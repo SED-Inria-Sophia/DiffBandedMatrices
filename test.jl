@@ -1,5 +1,5 @@
 using BandedMatrices
-include(joinpath(@__DIR__, "DiffBandedMatrices.jl"))
+include(joinpath(@__DIR__, "src", "DiffBandedMatrices.jl"))
 
 my_banded_matrix = BandedMatrix(rand(5,5), (1,1))
 println(my_banded_matrix)
