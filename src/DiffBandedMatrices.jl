@@ -1,4 +1,4 @@
-# module DiffBand
+module DiffBandMatrices
 
 export DiffBandedMatrix, apply!, materialize_dense
 
@@ -189,4 +189,6 @@ function Base.show(io::IO, ::MIME"text/plain", A::DiffBandedMatrix)
             break
         end
     end
+end
+
 end
