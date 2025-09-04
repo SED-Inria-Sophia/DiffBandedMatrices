@@ -1,2 +1,8 @@
+name = "DiffBrandedMatrix"
+version = "0.1.0"
+
+[compat]
+julia = "1.11"
+
 [deps]
 BandedMatrices = "aae01518-5342-5314-be14-df237901396f"

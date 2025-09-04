@@ -66,6 +66,9 @@ end
 # -- Création d'un DiffBandedMatrix à partir d'un DiffBandedMatrices ---------`
 
 function get(A::DiffBandedMatrices{T}, k::Int) where {T}
+    if k == 0
+        return A.parent
+    end
     @boundscheck if k < 1 || k > length(A.edits)
         throw(BoundsError(A, k))
     end
@@ -96,11 +99,12 @@ end
 # Conserve la perf du produit bande, puis corrige par les modifications.
 
 function Base.:*(A::DiffBandedMatrix{T}, x::AbstractVector{T}) where {T}
-    y = A.parent * x                          # rapide via algo bande
-    @inbounds for (k, v) in A.edits
+    y = A.parent.parent * x                          # rapide via algo bande
+    @inbounds for (k, vec) in A.parent.edits
+        v = vec[A.index]
         print(typeof(k)     )   
         i, j = Tuple( k )                           # indices
-        y[i] += (v - A.parent[i,j]) * x[j]     # delta
+        y[i] += (v - A.parent.parent[i,j]) * x[j]     # delta
     end
     return y
 end
