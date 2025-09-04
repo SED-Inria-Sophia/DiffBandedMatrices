@@ -1,4 +1,4 @@
-module DiffBandMatrices
+module DiffBandedMatrices
 
 export DiffBandedMatrix, apply!, materialize_dense
 
