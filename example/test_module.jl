@@ -1,8 +1,9 @@
 using LinearAlgebra
 using BandedMatrices
-
-include(joinpath(@__DIR__, "src", "DiffBandedMatricesModule.jl"))
-using .DiffBandedMatricesModule
+# using Pkg
+# Pkg.activate(".")
+# Pkg.add(url="git@github.com:SED-Inria-Sophia/DiffBandedMatricesModule.git") # , rev="v0.1.0")
+using DiffBandedMatricesModule
 
 n = 5
 # parent quelconque pour la démo (dans ton cas: une BandedMatrix{T})
@@ -14,12 +15,13 @@ parent = BandedMatrix(
 display(parent)
 # Modifs demandées sous forme (i,j,newval)
 new_mods  = Dict( CartesianIndex(1, 2) => [2, 3], CartesianIndex(2,2) => [1, 5] )
+# mods_ko = [(1,2, 9.0), (4,1, -2.0)] # Modification hors-bande (4,1) -> erreur quand on appelle apply!
+# mods_ok = [(1,2, 9.0), (3,3, 4.0)] # Modification dans la bande
 # display(parent)
-
 A = DiffBandedMatrices(parent, new_mods)
-# apply!(get(A,1))  # -> erreur (4,1) hors-bande
+# apply!(A)  # -> erreur (4,1) hors-bande
 # A = DiffBandedMatrix(parent, mods_ok)   
-# apply!(get(A,2))  # OK
+# apply!(A)  # OK
 
 display(value(A,2))
 

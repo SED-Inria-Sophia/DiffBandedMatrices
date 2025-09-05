@@ -1,7 +1,7 @@
 module DiffBandedMatricesModule
 
 export DiffBandedMatrices, DiffBandedMatrix, apply!, materialize_dense
-export get
+export value
 
 using Base: @propagate_inbounds, IndexStyle, IndexCartesian
 """
@@ -66,7 +66,7 @@ function Base.setindex!(A::DiffBandedMatrix{T}, v::T, i::Int, j::Int) where {T}
 end
 # -- Création d'un DiffBandedMatrix à partir d'un DiffBandedMatrices ---------`
 
-function get(A::DiffBandedMatrices{T}, k::Int) where {T}
+function value(A::DiffBandedMatrices{T}, k::Int) where {T}
     if k == 0
         return A.parent
     end
