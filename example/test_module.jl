@@ -1,8 +1,8 @@
 using LinearAlgebra
 using BandedMatrices
-# using Pkg
-# Pkg.activate(".")
-# Pkg.add(url="git@github.com:SED-Inria-Sophia/DiffBandedMatricesModule.git") # , rev="v0.1.0")
+using Pkg
+Pkg.activate(".")
+Pkg.add(url="git@github.com:SED-Inria-Sophia/DiffBandedMatrices.git") # , rev="v0.1.0")
 using DiffBandedMatricesModule
 
 n = 5
