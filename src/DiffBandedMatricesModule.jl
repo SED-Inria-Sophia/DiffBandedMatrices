@@ -87,15 +87,6 @@ function materialize_dense(A::DiffBandedMatrix)
     return M
 end
 
-"Applique les éditions *dans* le parent si celui-ci accepte setindex!."
-function apply!(A::DiffBandedMatrix)
-    @inbounds for (k, v) in A.edits
-        A.parent[k] = v              # attention: échouera si hors-bande ou parent immuable
-    end
-    empty!(A.edits)
-    return A.parent
-end
-
 # -- Accélération utile : produit matrice-vecteur ------------------------------
 # Conserve la perf du produit bande, puis corrige par les modifications.
 
