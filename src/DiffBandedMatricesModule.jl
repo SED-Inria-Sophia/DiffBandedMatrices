@@ -1,10 +1,11 @@
-module DiffBandedMatrices
+module DiffBandedMatricesModule
 
-export DiffBandedMatrix, apply!, materialize_dense
+export DiffBandedMatrices, DiffBandedMatrix, apply!, materialize_dense
+export get
 
 using Base: @propagate_inbounds, IndexStyle, IndexCartesian
 """
-    DiffBandedMatrices(parent, edits)
+    # DiffBandedMatrices(parent, edits)
 
 Ensemble
 """
